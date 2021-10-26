@@ -1,9 +1,18 @@
-const path = require('path');
+const CracoAlias = require("craco-alias");
 
 module.exports = {
-    webpack: {
-        alias: {
-            "@components": path.resolve(__dirname, 'src/sharable/components/')
-        }
-    }
+  plugins: [
+    {
+      plugin: CracoAlias,
+      options: {
+        source: "options",
+        baseUrl: "./",
+        aliases: {
+          "@pages": "./src/pages",
+          "@config": "./src/config",
+          "@components": "./src/components",
+        },
+      },
+    },
+  ],
 };
