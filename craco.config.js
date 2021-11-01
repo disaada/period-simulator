@@ -11,6 +11,7 @@ module.exports = {
           "@pages": "./src/pages",
           "@config": "./src/config",
           "@components": "./src/components",
+          "@lib": "./src/lib",
         },
       },
     },

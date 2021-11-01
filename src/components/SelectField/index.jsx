@@ -1,16 +1,25 @@
 import React from "react";
-import { Box, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import {
+  Box,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  TextField,
+  InputAdornment
+} from "@mui/material";
 import { Controller } from "react-hook-form";
 
 const selectWrapper = {
   marginBottom: 5,
-  width: "50%",
 };
 
-const SelectField = ({ title, control, name, ...props }) => {
+const SelectField = ({ title, control, name, getValues, ...props }) => {
+  const type = getValues("type");
+
   return (
     <Box sx={selectWrapper}>
-      <FormControl fullWidth>
+      <FormControl>
         <InputLabel>{title}</InputLabel>
         <Controller
           name={name}
@@ -23,6 +32,24 @@ const SelectField = ({ title, control, name, ...props }) => {
           )}
         />
       </FormControl>
+      {type === "pengalaman" && (
+        <Controller
+          name="cycle"
+          control={control}
+          render={({ field: { value, ...rest } }) => (
+            <TextField
+              variant="outlined"
+              label="Siklus Haid"
+              sx={{ marginLeft: 3 }}
+              value={value}
+              InputProps={{
+                endAdornment: <InputAdornment position="end">hari</InputAdornment>,
+              }}
+              {...rest}
+            />
+          )}
+        />
+      )}
     </Box>
   );
 };
